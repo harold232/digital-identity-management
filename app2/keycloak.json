@@ -1,0 +1,11 @@
+{
+  "realm": "DemoSSO",
+  "auth-server-url": "http://localhost:8080/",
+  "ssl-required": "external",
+  "resource": "app2",
+  "verify-token-audience": false,
+  "credentials": {
+    "secret": "0FeNjVvPTwpjtAL3BZPR0gE9MSArcUF9"
+  },
+  "confidential-port": 0
+}
