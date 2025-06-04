@@ -4,23 +4,6 @@ Este demo muestra cómo implementar **Single Sign-On (SSO)** federado usando **K
 
 ---
 
-## Estructura del proyecto
-
-sso-demo/
-│
-├── app1/
-│ ├── app.js
-│ └── keycloak.json
-│
-├── app2/
-│ ├── app.js
-│ └── keycloak.json
-│
-└── README.md
-
-
----
-
 ## Prerrequisitos
 
 - [Node.js](https://nodejs.org/) instalado
