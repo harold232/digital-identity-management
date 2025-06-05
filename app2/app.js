@@ -1,18 +1,27 @@
 const express = require('express');
 const session = require('express-session');
 const Keycloak = require('keycloak-connect');
+const cors = require('cors');
+
 const app = express();
+
+app.use(cors({
+  origin: ['http://localhost:3001'],
+  credentials: true
+}));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const memoryStore = new session.MemoryStore();
 app.use(session({
-  secret: 'keycloak-demo',
+  secret: 'app2-keycloak-session',
   resave: false,
   saveUninitialized: true,
   store: memoryStore
 }));
 
 const keycloak = new Keycloak({ store: memoryStore });
-
 app.use(keycloak.middleware());
 
 app.get('/', (req, res) => {
@@ -27,11 +36,18 @@ app.get('/private', keycloak.protect(), (req, res) => {
     <a href="/logout">Cerrar sesión</a>`);
 });
 
-app.get('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.redirect('http://localhost:8080/realms/DemoSSO/protocol/openid-connect/logout?redirect_uri=http://localhost:3001');
+app.get('/check-auth', keycloak.protect(), (req, res) => {
+  res.json({
+    authenticated: true,
+    user: req.kauth.grant.access_token.content
   });
 });
 
+app.get('/logout', (req, res) => {
+  req.session.destroy(() => {
+    const redirectUri = encodeURIComponent('http://localhost:3002');
+    res.redirect(`http://localhost:8080/realms/DemoSSO/protocol/openid-connect/logout?redirect_uri=${redirectUri}`);
+  });
+});
 
-app.listen(3002, () => console.log('App 2 en http://localhost:3002'));
+app.listen(3002, () => console.log('App 2 corriendo en http://localhost:3002'));
