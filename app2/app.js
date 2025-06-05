@@ -1,9 +1,9 @@
-const express = require('express');
-const session = require('express-session');
-const Keycloak = require('keycloak-connect');
+import express from 'express';
+import session, { MemoryStore } from 'express-session';
+import Keycloak from 'keycloak-connect';
 const app = express();
 
-const memoryStore = new session.MemoryStore();
+const memoryStore = new MemoryStore();
 app.use(session({
   secret: 'keycloak-demo',
   resave: false,
