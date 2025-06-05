@@ -1,18 +1,23 @@
 {
   "name": "app1",
   "version": "1.0.0",
+  "description": "",
   "main": "app1.js",
   "scripts": {
+    "start": "node app1.js",
+    "dev": "nodemon app1.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "keycloak-connect": "^26.1.1",
     "session-file-store": "^1.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
   }
 }
