@@ -7,5 +7,6 @@
   "credentials": {
     "secret": "K68TYeoapO4MWeL9OS4SRJIPLp9VIGtq"
   },
-  "confidential-port": 0
+  "confidential-port": 0,
+  "use-resource-role-mappings": true
 }
